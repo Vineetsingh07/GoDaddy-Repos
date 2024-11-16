@@ -1,12 +1,18 @@
-
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import RepoList from "./components/RepoList";
+import RepoDetails from "./components/RepoDetails";
 import "./App.css";
 
-function App() {
+const App = () => {
   return (
-    <>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<RepoList />} />
+        <Route path="/repo/:repoName" element={<RepoDetails />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
