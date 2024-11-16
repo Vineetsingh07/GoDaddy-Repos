@@ -1,41 +1,70 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import Loader from "./common/Loader";
+import APICalls from "../services/ApiCalls";
 
 function RepoList() {
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [search, setSearch] = useState("");
 
+  const WebServices = new APICalls();
+
+  // Fetch repositories on component mount
   useEffect(() => {
-    axios
-      .get("https://api.github.com/orgs/godaddy/repos")
-      .then((response) => {
+    const fetchRepoList = async () => {
+      try {
+        const response = await WebServices.getRepoList();
         setRepos(response.data);
-        setLoading(false);
-      })
-      .catch((err) => {
+      } catch (err) {
         setError(err.message);
+      } finally {
         setLoading(false);
-      });
-  }, []);
+      }
+    };
+
+    fetchRepoList();
+  }, [WebServices]);
+
+  // Filtered Repositories
+  const filteredRepos = repos.filter((repo) =>
+    repo.name.toLowerCase().includes(search.toLowerCase())
+  );
 
   if (loading)
     return (
-      <div>
+      <div className="p-5">
         <Loader />
+        <div className="animate-pulse space-y-2">
+          <div className="h-6 bg-gray-300 rounded w-1/2"></div>
+          <div className="h-6 bg-gray-300 rounded w-3/4"></div>
+          <div className="h-6 bg-gray-300 rounded w-2/3"></div>
+        </div>
       </div>
     );
-  if (error) return <div>Error: {error}</div>;
+
+  if (error) return <div className="p-5 text-red-500">Error: {error}</div>;
 
   return (
-    <div>
-      <h1>Godaddy Repositories</h1>
-      <ul className="menu bg-base-200 rounded-box">
-        {repos.map((repo) => (
+    <div className="p-5">
+      <h1 className="text-3xl font-bold mb-8">Godaddy Repositories</h1>
+      <input
+        type="text"
+        placeholder="Search repositories..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        className="input input-bordered w-full mb-4"
+      />
+      <ul className="space-y-3">
+        {filteredRepos.map((repo) => (
           <li key={repo.id}>
-            <Link to={`/repo/${repo.name}`}>{repo.name}</Link>
+            <Link
+              to={`/repo/${repo.name}`}
+              className="block card bg-base-100 shadow-md hover:shadow-lg hover:scale-105 transition-transform p-4"
+            >
+              <h2 className="font-bold text-lg">{repo.name}</h2>
+            </Link>
           </li>
         ))}
       </ul>
