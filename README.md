@@ -1,9 +1,38 @@
-# React + Vite
+# Godaddy Repositories Viewer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based application that fetches and displays repositories from the Godaddy GitHub organization. The app allows users to browse repositories, view details such as title, description, language(s), forks, open issues, and watchers, and visit the GitHub page for each repository.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-# GoDaddy-Repos
+## Features
+
+- Fetches data from [GitHub's API](https://api.github.com/orgs/godaddy/repos).
+- Displays a searchable list of repositories.
+- Detailed view for each repository, including:
+  - Repository name
+  - Description
+  - Primary language
+  - Number of forks
+  - Number of open issues
+  - Number of watchers
+  - Link to the repository page
+- Responsive and styled using **Daisy UI** (built on Tailwind CSS).
+- Loading skeletons for better user experience.
+- Error handling for API failures.
+
+---
+
+## Demo
+
+![Screenshot of the Godaddy Repositories Viewer](demo-screenshot.png)
+
+> **Note:** Replace `demo-screenshot.png` with an actual screenshot of your app.
+
+---
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/godaddy-repos-viewer.git
+   cd godaddy-repos-viewer
