@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import Loader from "./common/Loader";
+import APICalls from "../services/ApiCalls";
 
 function RepoDetails() {
   const { repoName } = useParams();
@@ -10,17 +11,21 @@ function RepoDetails() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const WebServices = new APICalls();
+
   useEffect(() => {
-    axios
-      .get(`https://api.github.com/repos/godaddy/${repoName}`)
-      .then((response) => {
+    const fetchRepoDetails = async () => {
+      try {
+        const response = await WebServices.getRepoDetails(repoName);
         setRepo(response.data);
-        setLoading(false);
-      })
-      .catch((err) => {
+      } catch (err) {
         setError(err.message);
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+
+    fetchRepoDetails();
   }, [repoName]);
 
   if (loading) return <Loader />;

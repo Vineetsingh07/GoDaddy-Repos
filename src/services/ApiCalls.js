@@ -7,6 +7,11 @@ class APICalls {
     const url = `${BASE_URL}/orgs/godaddy/repos`;
     return await axios.get(url);
   }
+
+  async getRepoDetails(repoName) {
+    const url = `${BASE_URL}/repos/godaddy/${repoName}`;
+    return await axios.get(url);
+  }
 }
 
 export default APICalls;
