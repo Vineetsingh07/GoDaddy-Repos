@@ -11,7 +11,6 @@ function RepoList() {
 
   const WebServices = new APICalls();
 
-  // Fetch repositories on component mount
   useEffect(() => {
     const fetchRepoList = async () => {
       try {
@@ -25,7 +24,7 @@ function RepoList() {
     };
 
     fetchRepoList();
-  }, [WebServices]);
+  }, []);
 
   // Filtered Repositories
   const filteredRepos = repos.filter((repo) =>
@@ -36,10 +35,10 @@ function RepoList() {
     return (
       <div className="p-5">
         <Loader />
-        <div className="animate-pulse space-y-2">
-          <div className="h-6 bg-gray-300 rounded w-1/2"></div>
-          <div className="h-6 bg-gray-300 rounded w-3/4"></div>
-          <div className="h-6 bg-gray-300 rounded w-2/3"></div>
+        <div className="animate-pulse space-y-3">
+          <div className="h-12 mt-8 bg-gray-300 rounded w-full"></div>
+          <div className="h-12 bg-gray-300 rounded w-full"></div>
+          <div className="h-12 bg-gray-300 rounded w-full"></div>
         </div>
       </div>
     );
@@ -48,7 +47,9 @@ function RepoList() {
 
   return (
     <div className="p-5">
-      <h1 className="text-3xl font-bold mb-8">Godaddy Repositories</h1>
+      <h1 className="text-3xl font-bold mb-8 text-pink-500">
+        Godaddy Repositories
+      </h1>
       <input
         type="text"
         placeholder="Search repositories..."
