@@ -35,3 +35,16 @@ A React-based application that fetches and displays repositories from the Godadd
    ```bash
    git clone https://github.com/your-username/godaddy-repos-viewer.git
    cd godaddy-repos-viewer
+
+2. Install dependencies:
+   ```bash
+   npm install
+
+3. Start the development server:
+   ```bash
+   npm run dev
+
+4. Open your browser and navigate to:
+   ```arduino
+   http://localhost:5173
+   
