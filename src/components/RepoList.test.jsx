@@ -5,32 +5,48 @@ import axios from "axios";
 import { BrowserRouter } from "react-router-dom";
 import "@testing-library/jest-dom";
 
-jest.mock("axios");
+// Mock axios
+jest.mock("axios", () => ({
+  get: jest.fn(),
+}));
 
-test("renders loading state", async () => {
-  axios.get.mockResolvedValue({ data: { id: 1, name: "repo-1" } });
-
-  render(<RepoList />);
-
-  // Wait for the loading state to be rendered
-  await waitFor(() => expect(screen.getByRole("status")).toBeInTheDocument());
-});
-
-test("renders repository list", async () => {
-  axios.get.mockResolvedValue({
-    data: [
-      { id: 1, name: "repo-1" },
-      { id: 2, name: "repo-2" },
-    ],
+describe("RepoList Component", () => {
+  // Clear mock data before each test
+  beforeEach(() => {
+    jest.clearAllMocks();
   });
 
-  render(
-    <BrowserRouter>
-      <RepoList />
-    </BrowserRouter>
-  );
+  test("renders loading state", async () => {
+    // Mock the response for loading state
+    axios.get.mockResolvedValueOnce({ data: { id: 1, name: "repo-1" } });
 
-  // Wait for the repository list to be rendered
-  await waitFor(() => expect(screen.getByText("repo-1")).toBeInTheDocument());
-  expect(screen.getByText("repo-2")).toBeInTheDocument();
+    render(<RepoList />);
+
+    // Wait for the loading state to be rendered
+    const loadingText = screen.getByRole("status");
+    expect(loadingText).toBeInTheDocument();
+  });
+
+  test("renders repository list", async () => {
+    // Mock the response for repository list
+    axios.get.mockResolvedValueOnce({
+      data: [
+        { id: 1, name: "repo-1" },
+        { id: 2, name: "repo-2" },
+      ],
+    });
+
+    render(
+      <BrowserRouter>
+        <RepoList />
+      </BrowserRouter>
+    );
+
+    // Check if repository names appear in the document
+    const repo1 = await screen.findByText("repo-1");
+    const repo2 = await screen.findByText("repo-2");
+
+    expect(repo1).toBeInTheDocument();
+    expect(repo2).toBeInTheDocument();
+  });
 });
