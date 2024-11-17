@@ -48,7 +48,7 @@ function RepoList() {
 
   return (
     <div className="p-5">
-      <h1 className="text-3xl font-bold mb-8 text-pink-500">
+      <h1 className="text-3xl font-bold mb-8">
         Godaddy Repositories
       </h1>
       <SearchRepo search={search} setSearch={setSearch} />
