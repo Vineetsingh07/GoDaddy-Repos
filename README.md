@@ -26,7 +26,6 @@ A React-based application that fetches and displays repositories from the Godadd
 
 ![Screenshot of the Godaddy Repositories Viewer](demo-screenshot.png)
 
-> **Note:** Replace `demo-screenshot.png` with an actual screenshot of your app.
 
 ---
 
