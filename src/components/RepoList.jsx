@@ -17,7 +17,6 @@ function RepoList() {
       try {
         const response = await WebServices.getRepoList();
         setRepos(response.data);
-        console.log("response.data", response.data[0]);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -29,21 +28,15 @@ function RepoList() {
   }, []);
 
   // Filtered Repositories
-  const filteredRepos = repos.filter((repo) =>
-    repo.name.toLowerCase().includes(search.toLowerCase())
-  );
+  // const filteredRepos = repos.filter((repo) =>
+  //   repo.name.toLowerCase().includes(search.toLowerCase())
+  // );
 
-  if (loading)
-    return (
-      <div className="p-5">
-        <Loader />
-        <div className="animate-pulse space-y-3">
-          <div className="h-12 mt-8 bg-gray-300 rounded w-full"></div>
-          <div className="h-12 bg-gray-300 rounded w-full"></div>
-          <div className="h-12 bg-gray-300 rounded w-full"></div>
-        </div>
-      </div>
-    );
+  const filteredRepos = Array.isArray(repos)
+    ? repos.filter((repo) => repo.name.includes(search.toLowerCase()))
+    : [];
+
+  if (loading) return <div role="status">Loading...</div>;
 
   if (error) return <div className="p-5 text-red-500">Error: {error}</div>;
 
