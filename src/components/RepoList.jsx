@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Loader from "./common/Loader";
 import APICalls from "../services/ApiCalls";
+import SearchRepo from "./SearchRepo";
 
 function RepoList() {
   const [repos, setRepos] = useState([]);
@@ -50,13 +51,8 @@ function RepoList() {
       <h1 className="text-3xl font-bold mb-8 text-pink-500">
         Godaddy Repositories
       </h1>
-      <input
-        type="text"
-        placeholder="Search repositories..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        className="input input-bordered w-full mb-4"
-      />
+      <SearchRepo search={search} setSearch={setSearch} />
+
       <ul className="space-y-3">
         {filteredRepos.map((repo) => (
           <li key={repo.id}>
