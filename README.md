@@ -55,7 +55,7 @@ A React-based application that fetches and displays repositories from the Godadd
 
 ---
 
-## Features
+## Technologies Used
 
 - React: Front-end JavaScript library.
 - Vite: Fast development build tool.
