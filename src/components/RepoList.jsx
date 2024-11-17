@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Loader from "./common/Loader";
-import APICalls from "../services/ApiCalls";
+import APICalls from "../services/ApiCalls.jsx";
 import SearchRepo from "./SearchRepo";
 
 function RepoList() {
