@@ -62,3 +62,20 @@ A React-based application that fetches and displays repositories from the Godadd
 ├── App.jsx            # Main app with routing
 ├── main.jsx           # Entry point of the application
 ├── index.css          # Tailwind and Daisy UI styles
+
+
+
+---
+
+## Features
+
+- React: Front-end JavaScript library.
+- Vite: Fast development build tool.
+- React Router: For navigation between pages.
+- Axios: HTTP client for API calls.
+- Tailwind CSS & Daisy UI: For styling and UI components.
+
+
+
+
+
