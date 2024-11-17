@@ -48,3 +48,17 @@ A React-based application that fetches and displays repositories from the Godadd
    ```arduino
    http://localhost:5173
    
+
+
+---
+
+
+## Project Structure
+ ```plaintext
+ src/
+├── components/        # React components
+│   ├── RepoList.jsx   # Displays the list of repositories
+│   ├── RepoDetails.jsx # Displays details of a specific repository
+├── App.jsx            # Main app with routing
+├── main.jsx           # Entry point of the application
+├── index.css          # Tailwind and Daisy UI styles
