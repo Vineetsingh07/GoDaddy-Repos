@@ -33,8 +33,8 @@ A React-based application that fetches and displays repositories from the Godadd
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/godaddy-repos-viewer.git
-   cd godaddy-repos-viewer
+   git clone https://github.com/Vineetsingh07/GoDaddy-Repos.git
+   cd GoDaddy-Repos
 
 2. Install dependencies:
    ```bash
