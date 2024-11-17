@@ -17,6 +17,7 @@ function RepoList() {
       try {
         const response = await WebServices.getRepoList();
         setRepos(response.data);
+        console.log("response.data", response.data[0]);
       } catch (err) {
         setError(err.message);
       } finally {
