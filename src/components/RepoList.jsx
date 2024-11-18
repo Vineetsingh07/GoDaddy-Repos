@@ -3,12 +3,15 @@ import { Link } from "react-router-dom";
 import Loader from "./common/Loader";
 import APICalls from "../services/ApiCalls.jsx";
 import SearchRepo from "./SearchRepo";
+import RepoListItem from "./RepoListItem.jsx";
 
 function RepoList() {
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
+  const [currentPage, setCurrentPage] = useState(1); // Track the current page
+  const itemsPerPage = 10; // Number of repos per page
 
   const WebServices = new APICalls();
 
@@ -28,13 +31,28 @@ function RepoList() {
   }, []);
 
   // Filtered Repositories
-  // const filteredRepos = repos.filter((repo) =>
-  //   repo.name.toLowerCase().includes(search.toLowerCase())
-  // );
+  const filteredRepos = repos.filter((repo) =>
+    repo.name.toLowerCase().includes(search.toLowerCase())
+  );
 
-  const filteredRepos = Array.isArray(repos)
-    ? repos.filter((repo) => repo.name.includes(search.toLowerCase()))
-    : [];
+  // Paginated Data
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const paginatedRepos = filteredRepos.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+
+  // Total Pages
+  const totalPages = Math.ceil(filteredRepos.length / itemsPerPage);
+
+  // Handlers for pagination
+  const handlePrevPage = () => {
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+  };
 
   if (loading) return <div role="status">Loading...</div>;
 
@@ -44,19 +62,28 @@ function RepoList() {
     <div className="p-5">
       <h1 className="text-3xl font-bold mb-8">Godaddy Repositories</h1>
       <SearchRepo search={search} setSearch={setSearch} />
+      <RepoListItem paginatedRepos={paginatedRepos} />
 
-      <ul className="space-y-3">
-        {filteredRepos.map((repo) => (
-          <li key={repo.id}>
-            <Link
-              to={`/repo/${repo.name}`}
-              className="block card bg-base-100 shadow-md hover:shadow-lg hover:scale-105 transition-transform p-4"
-            >
-              <h2 className="font-bold text-lg">{repo.name}</h2>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      {/* Pagination Controls */}
+      <div className="flex justify-center mt-6 space-x-2">
+        <button
+          onClick={handlePrevPage}
+          disabled={currentPage === 1}
+          className="btn btn-primary"
+        >
+          Previous
+        </button>
+        <span className="text-lg font-bold">
+          Page {currentPage} of {totalPages}
+        </span>
+        <button
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+          className="btn btn-primary"
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 }
