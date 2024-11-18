@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Loader from "./Loader";
 import APICalls from "../services/ApiCalls.jsx";
 import SearchRepo from "./SearchRepo";
-import Pagination from "./Pagination"; // Import the Pagination component
+import Pagination from "./Pagination";
 import RepoListItem from "./RepoListItem.jsx";
 
 function RepoList() {
@@ -11,8 +11,8 @@ function RepoList() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
-  const [currentPage, setCurrentPage] = useState(1); // Track the current page
-  const itemsPerPage = 10; // Number of repos per page
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
   const WebServices = new APICalls();
 
