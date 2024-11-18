@@ -37,7 +37,9 @@ describe("RepoList Component", () => {
     });
 
     render(
-      <BrowserRouter>
+      <BrowserRouter
+        future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
+      >
         <RepoList />
       </BrowserRouter>
     );
