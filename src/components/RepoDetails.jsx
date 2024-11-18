@@ -1,7 +1,7 @@
 // src/components/RepoDetails.jsx
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import Loader from "./common/Loader";
+import Loader from "./Loader";
 import APICalls from "../services/ApiCalls";
 
 function RepoDetails() {
