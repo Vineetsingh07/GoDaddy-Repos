@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Loader from "./common/Loader";
+import Loader from "./Loader";
 import APICalls from "../services/ApiCalls.jsx";
 import SearchRepo from "./SearchRepo";
+import Pagination from "./Pagination"; // Import the Pagination component
 import RepoListItem from "./RepoListItem.jsx";
 
 function RepoList() {
@@ -45,15 +46,6 @@ function RepoList() {
   // Total Pages
   const totalPages = Math.ceil(filteredRepos.length / itemsPerPage);
 
-  // Handlers for pagination
-  const handlePrevPage = () => {
-    if (currentPage > 1) setCurrentPage(currentPage - 1);
-  };
-
-  const handleNextPage = () => {
-    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
-  };
-
   if (loading) return <div role="status">Loading...</div>;
 
   if (error) return <div className="p-5 text-red-500">Error: {error}</div>;
@@ -63,27 +55,11 @@ function RepoList() {
       <h1 className="text-3xl font-bold mb-8">Godaddy Repositories</h1>
       <SearchRepo search={search} setSearch={setSearch} />
       <RepoListItem paginatedRepos={paginatedRepos} />
-
-      {/* Pagination Controls */}
-      <div className="flex justify-center mt-6 space-x-2">
-        <button
-          onClick={handlePrevPage}
-          disabled={currentPage === 1}
-          className="btn btn-primary"
-        >
-          Previous
-        </button>
-        <span className="text-lg font-bold">
-          Page {currentPage} of {totalPages}
-        </span>
-        <button
-          onClick={handleNextPage}
-          disabled={currentPage === totalPages}
-          className="btn btn-primary"
-        >
-          Next
-        </button>
-      </div>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
+      />
     </div>
   );
 }
