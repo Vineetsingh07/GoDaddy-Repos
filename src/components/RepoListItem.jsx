@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function RepoListItem({ paginatedRepos }) {
+function RepoListItem({ repos }) {
   return (
     <ul className="space-y-3">
-      {paginatedRepos.map((repo) => (
+      {repos.map((repo) => (
         <li key={repo.id}>
           <Link
             to={`/repo/${repo.name}`}

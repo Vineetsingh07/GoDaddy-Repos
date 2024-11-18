@@ -1,31 +1,16 @@
-// src/components/RepoDetails.jsx
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams, Link } from "react-router-dom";
 import Loader from "./Loader";
-import APICalls from "../services/ApiCalls";
+import useFetch from "../hooks/useFetch";
 
 function RepoDetails() {
   const { repoName } = useParams();
-  const [repo, setRepo] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
-  const WebServices = new APICalls();
-
-  useEffect(() => {
-    const fetchRepoDetails = async () => {
-      try {
-        const response = await WebServices.getRepoDetails(repoName);
-        setRepo(response.data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchRepoDetails();
-  }, [repoName]);
+  const {
+    data: repo,
+    loading,
+    error,
+  } = useFetch(`https://api.github.com/repos/godaddy/${repoName}`);
 
   if (loading) return <Loader />;
   if (error) return <div>Error: {error}</div>;
