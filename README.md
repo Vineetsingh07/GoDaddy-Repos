@@ -4,7 +4,7 @@ A React-based application that fetches and displays repositories from the Godadd
 
 
 
-Live Demo: https://go-daddy-repos.vercel.app
+[Live Demo](https://go-daddy-repos.vercel.app)
 
 ---
 
@@ -27,6 +27,7 @@ Live Demo: https://go-daddy-repos.vercel.app
 ---
 
 ## Demo
+[Live Demo](https://go-daddy-repos.vercel.app)
 
 ![Screenshot of the Godaddy Repositories Viewer](demo-screenshot.png)
 
