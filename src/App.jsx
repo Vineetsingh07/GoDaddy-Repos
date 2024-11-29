@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import RepoList from "./components/RepoList";
-import RepoDetails from "./components/RepoDetails";
+import RepoList from "./components/RepoList/RepoList";
+import RepoDetails from "./components/RepoDetails/RepoDetails";
 import "./App.css";
 
 const App = () => {
