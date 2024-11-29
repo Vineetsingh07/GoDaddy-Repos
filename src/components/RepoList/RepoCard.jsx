@@ -44,7 +44,7 @@ function RepoCard({ repo }) {
           <div className="mt-auto flex justify-between text-sm text-gray-700 dark:text-gray-300">
             <span>{repo.language}</span>
             <div className="flex space-x-2">
-              <span>⭐ {repo.stars}</span>
+              <span>⭐ {repo.watchers_count}</span>
               <span>🍴 {repo.forks}</span>
             </div>
           </div>

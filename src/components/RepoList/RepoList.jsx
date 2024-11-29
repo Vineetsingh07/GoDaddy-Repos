@@ -14,7 +14,6 @@ function RepoList() {
   );
 
   const repos = data || [];
-  console.log("repos\nrepos\nrepos\nrepos\nrepos\nrepos\nrepos\n", repos);
 
   // Handlers
   const handleSearch = (query) => {
