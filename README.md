@@ -68,12 +68,21 @@ A React-based application that fetches and displays repositories from the Godadd
 
 ```plaintext
 src/
-├── components/        # React components
-│   ├── RepoList.jsx   # Displays the list of repositories
-│   ├── RepoDetails.jsx # Displays details of a specific repository
-├── App.jsx            # Main app with routing
-├── main.jsx           # Entry point of the application
-├── index.css          # Tailwind and Daisy UI styles
+├── components/
+|   ├──common
+|        ├── Loader.jsx
+|        ├── Pagination.jsx
+|   ├──RepoList
+|        ├── RepoCard.jsx
+|        ├── RepoList.jsx
+|        ├── RepoList.test.jsx
+|        ├── RepoListItem.jsx
+|        ├── SearchRepo.jsx
+|   ├──RepoDetails
+|        ├── RepoDetails.jsx
+├── App.jsx           
+├── main.jsx          
+├── index.css         
 ```
 
 ---
