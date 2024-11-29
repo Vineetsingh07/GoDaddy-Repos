@@ -8,6 +8,7 @@ import {
   FaExclamationCircle,
   FaEye,
 } from "react-icons/fa";
+import RepoDetailStats from "./RepoDetailStats"; // Import RepoDetailStats
 
 function RepoDetails() {
   const { repoName } = useParams();
@@ -38,30 +39,34 @@ function RepoDetails() {
 
           {/* Repo Stats */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="flex items-center space-x-2 p-4 bg-gray-300 rounded-xl shadow-sm">
-              <FaCodeBranch className="text-3xl text-gray-600" />
-              <p className="font-semibold text-lg sm:text-xl text-gray-800">
-                Forks: {repo.forks}
-              </p>
-            </div>
-            <div className="flex items-center space-x-2 p-4 bg-gray-300 rounded-xl shadow-sm">
-              <FaExclamationCircle className="text-3xl text-gray-600" />
-              <p className="font-semibold text-lg sm:text-xl text-gray-800">
-                Open Issues: {repo.open_issues}
-              </p>
-            </div>
-            <div className="flex items-center space-x-2 p-4 bg-gray-300 rounded-xl shadow-sm">
-              <FaEye className="text-3xl text-gray-600" />
-              <p className="font-semibold text-lg sm:text-xl text-gray-800">
-                Watchers: {repo.watchers}
-              </p>
-            </div>
-            <div className="flex items-center space-x-2 p-4 bg-gray-300 rounded-xl shadow-sm">
-              <FaStar className="text-3xl text-yellow-500" />
-              <p className="font-semibold text-lg sm:text-xl text-gray-800">
-                Stars: {repo.stargazers_count}
-              </p>
-            </div>
+            <RepoDetailStats
+              icon={FaCodeBranch}
+              label="Forks"
+              value={repo.forks}
+              iconClass="text-gray-600"
+              textClass="text-gray-800"
+            />
+            <RepoDetailStats
+              icon={FaExclamationCircle}
+              label="Open Issues"
+              value={repo.open_issues}
+              iconClass="text-gray-600"
+              textClass="text-gray-800"
+            />
+            <RepoDetailStats
+              icon={FaEye}
+              label="Watchers"
+              value={repo.watchers}
+              iconClass="text-gray-600"
+              textClass="text-gray-800"
+            />
+            <RepoDetailStats
+              icon={FaStar}
+              label="Stars"
+              value={repo.stargazers_count}
+              iconClass="text-yellow-500"
+              textClass="text-gray-800"
+            />
           </div>
 
           {/* Action Buttons */}
