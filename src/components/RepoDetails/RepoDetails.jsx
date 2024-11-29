@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
-import Loader from "./Loader";
-import useFetch from "../hooks/useFetch";
+import Loader from "../common/Loader";
+import useFetch from "../../hooks/useFetch";
 
 function RepoDetails() {
   const { repoName } = useParams();

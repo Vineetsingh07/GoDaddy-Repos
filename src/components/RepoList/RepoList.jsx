@@ -1,19 +1,20 @@
 import React, { useState } from "react";
-import SearchRepo from "./SearchRepo";
-import Pagination from "./Pagination";
+import SearchRepo from "./SearchRepo.jsx";
+import Pagination from "../common/Pagination.jsx";
 import RepoListItem from "./RepoListItem.jsx";
-import useFetch from "../hooks/useFetch.js";
+import useFetch from "../../hooks/useFetch.js";
 
 function RepoList() {
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
+  const itemsPerPage = 8;
 
   const { data, loading, error } = useFetch(
     "https://api.github.com/orgs/godaddy/repos"
   );
 
   const repos = data || [];
+  console.log("repos\nrepos\nrepos\nrepos\nrepos\nrepos\nrepos\n", repos);
 
   // Handlers
   const handleSearch = (query) => {
