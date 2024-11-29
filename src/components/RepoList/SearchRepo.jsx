@@ -4,7 +4,7 @@ function SearchRepo({ search, setSearch }) {
   return (
     <input
       type="text"
-      placeholder="Search repositories..."
+      placeholder="Search repositories by name..."
       value={search}
       onChange={(e) => setSearch(e.target.value)}
       className="input input-bordered w-full mb-4"
