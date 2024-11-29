@@ -2,8 +2,6 @@
 
 A React-based application that fetches and displays repositories from the Godaddy GitHub organization. The app allows users to browse repositories, view details such as title, description, language(s), forks, open issues, and watchers, and visit the GitHub page for each repository.
 
-
-
 [Live Demo](https://go-daddy-repos.vercel.app)
 
 ---
@@ -27,40 +25,49 @@ A React-based application that fetches and displays repositories from the Godadd
 ---
 
 ## Demo
+
 [Live Demo](https://go-daddy-repos.vercel.app)
 
 ![Screenshot of the Godaddy Repositories Viewer](demo-screenshot.png)
-
 
 ---
 
 ## Installation
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/Vineetsingh07/GoDaddy-Repos.git
    cd GoDaddy-Repos
 
+   ```
+
 2. Install dependencies:
+
    ```bash
    npm install
 
+   ```
+
 3. Start the development server:
+
    ```bash
    npm run dev
+
+   ```
 
 4. Open your browser and navigate to:
    ```arduino
    http://localhost:5173
-   
 
+   ```
 
 ---
 
-
 ## Project Structure
- ```plaintext
- src/
+
+```plaintext
+src/
 ├── components/        # React components
 │   ├── RepoList.jsx   # Displays the list of repositories
 │   ├── RepoDetails.jsx # Displays details of a specific repository
@@ -68,8 +75,6 @@ A React-based application that fetches and displays repositories from the Godadd
 ├── main.jsx           # Entry point of the application
 ├── index.css          # Tailwind and Daisy UI styles
 ```
-
-
 
 ---
 
@@ -81,17 +86,6 @@ A React-based application that fetches and displays repositories from the Godadd
 - Axios: HTTP client for API calls.
 - Tailwind CSS & Daisy UI: For styling and UI components.
 
-
-
 ---
 
-
-
 > **Note:** 60 requests per hour per IP address.
-
-
-
-
-
-
-
