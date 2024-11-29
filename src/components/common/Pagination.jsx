@@ -10,24 +10,26 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
   };
 
   return (
-    <div className="flex justify-center items-center mt-6 space-x-2">
-      <button
-        onClick={handlePrevPage}
-        disabled={currentPage === 1}
-        className="btn btn-primary"
-      >
-        Previous
-      </button>
-      <span className="text-lg font-bold">
-        Page {currentPage} of {totalPages}
-      </span>
-      <button
-        onClick={handleNextPage}
-        disabled={currentPage === totalPages}
-        className="btn btn-primary"
-      >
-        Next
-      </button>
+    <div className="fixed bottom-0 left-0 w-full py-4 shadow-lg">
+      <div className="flex justify-center items-center space-x-2">
+        <button
+          onClick={handlePrevPage}
+          disabled={currentPage === 1}
+          className="btn btn-primary"
+        >
+          Previous
+        </button>
+        <span className="text-lg font-bold">
+          Page {currentPage} of {totalPages}
+        </span>
+        <button
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+          className="btn btn-primary"
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 }
