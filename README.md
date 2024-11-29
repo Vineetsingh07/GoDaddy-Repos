@@ -80,6 +80,7 @@ src/
 |        ├── SearchRepo.jsx
 |   ├──RepoDetails
 |        ├── RepoDetails.jsx
+|        ├── RepoDetailStats.jsx
 ├── App.jsx           
 ├── main.jsx          
 ├── index.css         
