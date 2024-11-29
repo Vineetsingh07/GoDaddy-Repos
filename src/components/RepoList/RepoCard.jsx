@@ -29,7 +29,7 @@ function RepoCard({ repo }) {
 
           {/* Repo Information */}
           <div className="mb-4 flex-grow">
-            <h2 className="font-bold text-lg text-gray-900 dark:text-white">
+            <h2 className="font-bold text-lg text-gray-900 dark:text-white mb-4">
               {repo.name}
             </h2>
             <p className="text-sm text-gray-600 dark:text-gray-200">
@@ -44,7 +44,7 @@ function RepoCard({ repo }) {
           <div className="mt-auto flex justify-between text-sm text-gray-700 dark:text-gray-300">
             <span>{repo.language}</span>
             <div className="flex space-x-2">
-              <span>⭐ {repo.watchers_count}</span>
+              <span>⭐ {repo.stargazers_count}</span>
               <span>🍴 {repo.forks}</span>
             </div>
           </div>
