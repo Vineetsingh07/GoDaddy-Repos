@@ -1,54 +1,76 @@
-import React from "react";
-import { render, screen, waitFor } from "@testing-library/react";
-import RepoList from "./RepoList";
-import axios from "axios";
-import { BrowserRouter } from "react-router-dom";
-import "@testing-library/jest-dom";
+import React from 'react';
+import { render, screen, waitFor } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import axios from 'axios';
+import RepoList from './RepoList';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-// Mock axios
-jest.mock("axios", () => ({
-  get: jest.fn(),
-}));
+jest.mock('axios');
 
-describe("RepoList Component", () => {
-  // Clear mock data before each test
-  beforeEach(() => {
+describe('RepoList Component', () => {
+  afterEach(() => {
     jest.clearAllMocks();
   });
 
-  test("renders loading state", async () => {
-    // Mock the response for loading state
-    axios.get.mockResolvedValueOnce({ data: { id: 1, name: "repo-1" } });
-
+  test('renders loading state initially', () => {
     render(<RepoList />);
-
-    // Wait for the loading state to be rendered
-    const loadingText = screen.getByRole("status");
-    expect(loadingText).toBeInTheDocument();
+    expect(screen.getByText(/loading/i)).toBeInTheDocument();
   });
 
-  test("renders repository list", async () => {
-    // Mock the response for repository list
-    axios.get.mockResolvedValueOnce({
-      data: [
-        { id: 1, name: "repo-1" },
-        { id: 2, name: "repo-2" },
-      ],
-    });
+  test('renders repository list on successful fetch', async () => {
+    const mockData = [
+      {
+        id: 1,
+        name: 'Repo1',
+        description: 'Description for Repo1',
+        owner: { login: 'owner1' },
+        language: 'JavaScript',
+        stargazers_count: 10,
+        forks: 5,
+      },
+      {
+        id: 2,
+        name: 'Repo2',
+        description: 'Description for Repo2',
+        owner: { login: 'owner2' },
+        language: 'Python',
+        stargazers_count: 20,
+        forks: 10,
+      },
+    ];
+
+    axios.get.mockResolvedValueOnce({ data: mockData });
 
     render(
-      <BrowserRouter
-        future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
-      >
+      <Router>
         <RepoList />
-      </BrowserRouter>
+      </Router>
     );
 
-    // Check if repository names appear in the document
-    const repo1 = await screen.findByText("repo-1");
-    const repo2 = await screen.findByText("repo-2");
+    await waitFor(() => {
+      // Verify repository names and details
+      mockData.forEach((repo) => {
+        expect(screen.getByText(repo.name)).toBeInTheDocument();
+        expect(screen.getByText(repo.description || 'No description available')).toBeInTheDocument();
+        expect(screen.getByText(`by ${repo.owner.login}`)).toBeInTheDocument();
+        expect(screen.getByText(repo.language)).toBeInTheDocument();
+        expect(screen.getByText(`⭐ ${repo.stargazers_count}`)).toBeInTheDocument();
+        expect(screen.getByText(`🍴 ${repo.forks}`)).toBeInTheDocument();
+      });
+    });
+  });
 
-    expect(repo1).toBeInTheDocument();
-    expect(repo2).toBeInTheDocument();
+  test('renders error message on API failure', async () => {
+    axios.get.mockRejectedValueOnce(new Error('Failed to fetch data'));
+
+    render(
+      <Router>
+        <RepoList />
+      </Router>
+    );
+
+    await waitFor(() => {
+      expect(screen.getByText(/failed to fetch data/i)).toBeInTheDocument();
+    });
   });
 });
