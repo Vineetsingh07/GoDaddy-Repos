@@ -37,7 +37,7 @@ function RepoList() {
 
   return (
     <div className="p-5">
-      <h1 className="text-3xl font-bold mb-8 py-5 bg-gradient-to-r from-emerald-300 via-emerald-200 to-emerald-100  rounded-xl overflow-hidden">Godaddy Repositories</h1>
+      <h1 className="text-3xl font-bold mb-8 py-5 bg-gradient-to-r from-emerald-300 via-emerald-200 to-emerald-100 rounded-xl overflow-hidden">Godaddy Repositories</h1>
       <SearchRepo search={search} setSearch={handleSearch} />
 
       <RepoListItem repos={paginatedRepos} />
