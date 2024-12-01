@@ -8,7 +8,7 @@ import {
   FaExclamationCircle,
   FaEye,
 } from "react-icons/fa";
-import RepoDetailStats from "./RepoDetailStats"; // Import RepoDetailStats
+import RepoDetailStats from "./RepoDetailStats";
 
 function RepoDetails() {
   const { repoName } = useParams();
