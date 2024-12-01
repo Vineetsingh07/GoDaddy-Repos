@@ -15,7 +15,7 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
         <button
           onClick={handlePrevPage}
           disabled={currentPage === 1}
-          className="btn btn-primary"
+          className="btn bg-gray-600 hover:bg-gray-700 text-white w-full sm:w-auto transition duration-300 py-3 rounded-md text-center shadow-md"
         >
           Previous
         </button>
@@ -25,7 +25,7 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
         <button
           onClick={handleNextPage}
           disabled={currentPage === totalPages}
-          className="btn btn-primary"
+          className="btn bg-gray-600 hover:bg-gray-700 text-white w-full sm:w-auto transition duration-300 py-3 rounded-md text-center shadow-md"
         >
           Next
         </button>
