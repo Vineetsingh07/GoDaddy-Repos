@@ -19,13 +19,13 @@ function RepoCard({ repo }) {
         {/* Content Overlay */}
         <div className="relative z-10 flex flex-col h-full">
           {/* Avatar Section */}
-          {/* <div className="flex justify-center mb-5">
+          <div className="flex justify-center mb-5">
             <img
               src={repo.owner.avatar_url}
               alt={repo.owner.login}
               className="w-12 h-12 rounded-full border-4 border-white shadow-md"
             />
-          </div> */}
+          </div>
 
           {/* Repo Information */}
           <div className="mb-4 flex-grow">
